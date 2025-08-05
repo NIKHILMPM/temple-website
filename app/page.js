@@ -41,13 +41,22 @@ const Page = () => {
   const section1Ref = useRef();
   const section2Ref = useRef();
   const containerRef = useRef();
+  const containerRef1 = useRef(null);
+  const section1Ref1 = useRef(null);
+  const section2Ref1 = useRef(null);
+  const infoRef11 = useRef(null);
+  const infoRef21 = useRef(null);
+  const infoRef31 = useRef(null);
 
   // Section 1 entrance animation
   useGSAP(() => {
-    const boxes = gsap.utils.toArray(section1Ref.current.children);
+    const boxes1 = section1Ref.current?.children ? Array.from(section1Ref.current.children) : [];
+    const boxes2 = section1Ref1.current?.children ? Array.from(section1Ref1.current.children) : [];
+
+    const allBoxes = [...boxes1, ...boxes2];
 
     gsap.fromTo(
-      boxes,
+      allBoxes,
       { x: -1000, opacity: 0 },
       {
         x: 0,
@@ -59,122 +68,103 @@ const Page = () => {
     );
   }, []);
 
+
   // Info box scroll-in animation
-  useGSAP(() => {
-    if (!infoRef1.current) return;
-
-    gsap.fromTo(
-      infoRef1.current,
-      { y: 250, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: infoRef1.current,
-          start: "top 80%",
-          end: "bottom 60%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-    gsap.to(".flower1",
-      { rotation: 360, duration: 5, repeat: -1, ease: "linear" }
-    )
-  }, { dependencies: [infoRef1] });
+  const infoRefs = [infoRef1, infoRef2, infoRef3, infoRef11, infoRef21, infoRef31];
+  const flowerClasses = [".flower1", ".flower2", ".flower3", ".flower11", ".flower21", ".flower31"];
 
   useGSAP(() => {
-    if (!infoRef2.current) return;
+    // Animate all infoRefs with ScrollTrigger
+    infoRefs.forEach((ref) => {
+      if (!ref.current) return;
 
-    gsap.fromTo(
-      infoRef2.current,
-      { y: 250, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: infoRef2.current,
-          start: "top 80%",
-          end: "bottom 60%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-    gsap.to(".flower2",
-      { rotation: 360, duration: 5, repeat: -1, ease: "linear" }
-    )
-  }, { dependencies: [infoRef2] });
-
-  useGSAP(() => {
-    if (!infoRef3.current) return;
-
-    gsap.fromTo(
-      infoRef3.current,
-      { y: 250, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: infoRef3.current,
-          start: "top 80%",
-          end: "bottom 60%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-    gsap.to(".flower3",
-      { rotation: 360, duration: 5, repeat: -1, ease: "linear" }
-    )
-  }, { dependencies: [infoRef3] });
-  // Section 2 box animations
-  useGSAP(() => {
-    const boxes = gsap.utils.toArray(section2Ref.current.children);
-
-    boxes.forEach((box) => {
       gsap.fromTo(
-        box,
+        ref.current,
+        { y: 250, opacity: 0 },
         {
-          x: 200,
-          opacity: 0,
-          scale: 0.8,
-          borderRadius: "50%",
-        },
-        {
-          x: 0,
+          y: 0,
           opacity: 1,
-          scale: 1,
-          borderRadius: "0%",
-          duration: 2,
-          ease: "power3.out",
+          duration: 1,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: box,
+            trigger: ref.current,
             start: "top 80%",
-            end: "bottom 80%",
+            end: "bottom 60%",
             toggleActions: "play none none reverse",
           },
         }
       );
     });
-  }, { dependencies: [section2Ref] });
+
+    // Animate all flower rotations
+    flowerClasses.forEach((cls) => {
+      gsap.to(cls, {
+        rotation: 360,
+        duration: 5,
+        repeat: -1,
+        ease: "linear",
+      });
+    });
+  }, []);
+
+  // Section 2 box animations
+  useGSAP(() => {
+    const allSectionRefs = [section2Ref, section2Ref1];
+
+    allSectionRefs.forEach((sectionRef) => {
+      if (!sectionRef.current) return;
+
+      const boxes = gsap.utils.toArray(sectionRef.current.children);
+
+      boxes.forEach((box) => {
+        gsap.fromTo(
+          box,
+          {
+            x: 200,
+            opacity: 0,
+            scale: 0.8,
+            borderRadius: "50%",
+          },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            borderRadius: "0%",
+            duration: 2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: box,
+              start: "top 80%",
+              end: "bottom 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    });
+  }, []);
 
   // Scroll snapping between sections
   useEffect(() => {
-    const panels = gsap.utils.toArray(".panel");
+    const allContainers = [containerRef, containerRef1];
 
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top top",
-      end: () => "+=" + window.innerHeight * (panels.length - 1),
-      snap: 1 / (panels.length - 1),
-      scrub: 1,
+    allContainers.forEach((ref) => {
+      if (!ref.current) return;
+
+      const panels = gsap.utils.toArray(".panel", ref.current);
+
+      ScrollTrigger.create({
+        trigger: ref.current,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * (panels.length - 1),
+        snap: 1 / (panels.length - 1),
+        scrub: 1,
+      });
     });
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
@@ -371,9 +361,12 @@ const Page = () => {
         </div>
       </div >
       {/* // ....................................................phone-Ui.................................................. */}
-      <div ref={containerRef} className="block md:hidden overflow-hidden no-scrollbar">
+      <div ref={containerRef1} className="block md:hidden overflow-hidden no-scrollbar">
         <div className="h-screen w-screen panel">
-          <div className="fixed inset-0 w-screen h-screen -z-10 opacity-50 bg-cover" style={{ backgroundImage: "url('/background/background.jpg')" }}></div>
+          <div
+            className="fixed inset-0 w-screen h-screen -z-10 opacity-50 bg-cover"
+            style={{ backgroundImage: "url('/background/background.jpg')" }}
+          ></div>
 
           {/* Section 1 - Hero */}
           <div className="relative h-screen w-screen panel">
@@ -398,7 +391,7 @@ const Page = () => {
 
             <div className="absolute inset-0 z-10 flex justify-center items-center bg-gradient-to-tr from-orange-400 to-backdrop-blur-xs">
               <div
-                ref={section1Ref}
+                ref={section1Ref1}
                 className="flex h-full w-[80%] flex-col justify-center px-6 py-10 text-white space-y-6 bg-transparent"
               >
                 <div className="text-left space-y-2">
@@ -427,42 +420,40 @@ const Page = () => {
         {/* Section 2 - Info Heading */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <div
-            ref={infoRef1}
-            className="h-[30%] w-full flex  justify-between items-center p-4"
+            ref={infoRef11}
+            className="h-[30%] w-full flex justify-between items-center p-4"
           >
             <div
-              className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+              className="flower11 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
             <div className="h-1/3 w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
-              <span className="text-xs text-black font-bold">Experience the Grace of the Divine at Shree Shantadurga Shankhwaleshwari Temple.</span>
+              <span className="text-xs text-black font-bold">
+                Experience the Grace of the Divine at Shree Shantadurga Shankhwaleshwari Temple.
+              </span>
             </div>
             <div
-              className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+              className="flower11 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
-
           </div>
         </div>
 
         {/* Section 3 - Grid of Links */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <div
-            ref={section2Ref}
-            className="h-[90%] w-[65%] grid grid-row-4 gap-3 "
+            ref={section2Ref1}
+            className="h-[90%] w-[65%] grid grid-row-4 gap-3"
           >
             {sections.map((section, index) => (
               <Link key={index} href={section.link} passHref>
                 <div className="group relative w-full h-full overflow-hidden shadow-lg cursor-pointer">
-                  <div
-                    className="absolute inset-0 w-full h-full bg-amber-50/group-hover:bg-amber-50/20 transition-transform duration-500 ease-in-out group-hover:bg-amber-50/55 z-40"
-                  >
-                  </div>
+                  <div className="absolute inset-0 w-full h-full bg-amber-50/group-hover:bg-amber-50/20 transition-transform duration-500 ease-in-out group-hover:bg-amber-50/55 z-40"></div>
                   <div
                     className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-125"
                     style={{ backgroundImage: `url('/background/${section.image}')` }}
                   ></div>
-                  <div className="absolute bottom-0 left-0 w-full h-1/3 bg-orange-400/50  transition-transform duration-500 ease-in-out group-hover:translate-y-0 flex items-center justify-center z-50">
+                  <div className="absolute bottom-0 left-0 w-full h-1/3 bg-orange-400/50 transition-transform duration-500 ease-in-out group-hover:translate-y-0 flex items-center justify-center z-50">
                     <h1 className="text-center text-white font-bold text-xl px-2">
                       {section.title}
                     </h1>
@@ -472,25 +463,28 @@ const Page = () => {
             ))}
           </div>
         </div>
-        {/* section3 */}
+
+        {/* Section 4 - About Us Banner */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <div
-            ref={infoRef2}
-            className="h-[30%] w-full  flex justify-between items-center p-4"
+            ref={infoRef21}
+            className="h-[30%] w-full flex justify-between items-center p-4"
           >
             <div
-              className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+              className="flower21 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
             <div className="h-1/3 w-[40%] border-t-5 border-b-4 border-black flex justify-center items-center">
               <span className="text-xl text-black font-bold">About us</span>
             </div>
             <div
-              className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+              className="flower21 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
           </div>
         </div>
+
+        {/* Section 5 - History */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <div className="w-full h-[90%] flex flex-col p-5 justify-center items-center bg-gradient-to-tl from-amber-100 to-amber-100">
             <div
@@ -498,9 +492,7 @@ const Page = () => {
               style={{ backgroundImage: "url('/diety/background.jpg')" }}
             >
               <div className="relative backdrop-blur-sm w-full h-full flex justify-center items-center">
-                {/* This wrapper ensures square dimensions */}
                 <div className="relative aspect-square w-[90vw] max-w-[600px]">
-                  {/* Rotating outer chakra */}
                   <div
                     className="absolute inset-0 rounded-full bg-cover bg-center animate-spin [animation-duration:15s] shadow-[0_0_20px_5px_rgba(255,255,0,0.6),0_0_10px_2px_rgba(255,255,255,0.8),0_0_30px_10px_rgba(255,255,0,0.4),0_0_15px_4px_rgba(255,255,255,0.7)]"
                     style={{
@@ -508,8 +500,6 @@ const Page = () => {
                       backgroundColor: "rgba(255,255,255,0.1)",
                     }}
                   />
-
-                  {/* Inner goddess image */}
                   <div
                     className="absolute inset-[12.5%] rounded-full bg-cover bg-center overflow-hidden"
                     style={{ backgroundImage: "url('/background/goddess.jpg')" }}
@@ -518,11 +508,10 @@ const Page = () => {
                   </div>
                 </div>
               </div>
-
             </div>
-
             <div className="w-full h-full flex justify-start items-center p-10">
-              <p className="text-sm font-mono mr-10 text-gray-500"> The 16th century Goa saw the reign of the Portuguese and faced their terror, intending to spread Christianity.
+              <p className="text-sm font-mono mr-10 text-gray-500">
+                The 16th century Goa saw the reign of the Portuguese and faced their terror, intending to spread Christianity.
                 Goans witnessed forceful acts of conversion, temple demolitions, destruction of idols, looting of temple wealth,
                 and even setting temple buildings on fire.
                 During this dark period, our pious ancestors risked their lives—leaving behind their homes, land, wealth, and
@@ -534,36 +523,37 @@ const Page = () => {
           </div>
         </div>
 
-        {/* section4 */}
+        {/* Section 6 - Final Message */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <div
-            ref={infoRef3}
-            className="h-[30%] w-full  flex justify-between items-center p-4"
+            ref={infoRef31}
+            className="h-[30%] w-full flex justify-between items-center p-4"
           >
             <div
-              className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+              className="flower31 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
             <div className="h-1/4 w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
               <span className="text-xs text-black font-bold">Nine Deities, Eternal Protectors of Our People.</span>
             </div>
             <div
-              className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+              className="flower31 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
           </div>
         </div>
 
+        {/* Section 7 - Deity Section */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <DeitySection />
         </div>
 
-        {/* footer */}
+        {/* Footer */}
         <div className="h-screen w-screen flex justify-center items-end panel">
-
           <Footer />
         </div>
-      </div >
+      </div>
+
     </>
 
 
