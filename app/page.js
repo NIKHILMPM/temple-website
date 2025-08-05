@@ -9,7 +9,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
 
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 
 // Import Swiper styles
@@ -38,6 +37,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Page = () => {
   const infoRef1 = useRef();
   const infoRef2 = useRef();
+  const infoRef3 = useRef();
   const section1Ref = useRef();
   const section2Ref = useRef();
   const containerRef = useRef();
@@ -79,6 +79,9 @@ const Page = () => {
         },
       }
     );
+    gsap.to(".flower1",
+      { rotation: 360, duration: 5, repeat: -1, ease: "linear" }
+    )
   }, { dependencies: [infoRef1] });
 
   useGSAP(() => {
@@ -100,8 +103,34 @@ const Page = () => {
         },
       }
     );
+    gsap.to(".flower2",
+      { rotation: 360, duration: 5, repeat: -1, ease: "linear" }
+    )
   }, { dependencies: [infoRef2] });
 
+  useGSAP(() => {
+    if (!infoRef3.current) return;
+
+    gsap.fromTo(
+      infoRef3.current,
+      { y: 250, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: infoRef3.current,
+          start: "top 80%",
+          end: "bottom 60%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+    gsap.to(".flower3",
+      { rotation: 360, duration: 5, repeat: -1, ease: "linear" }
+    )
+  }, { dependencies: [infoRef3] });
   // Section 2 box animations
   useGSAP(() => {
     const boxes = gsap.utils.toArray(section2Ref.current.children);
@@ -209,14 +238,14 @@ const Page = () => {
           className="h-[30%] w-full  flex justify-between items-center p-4"
         >
           <div
-            className="h-full w-[20%] bg-contain bg-no-repeat bg-center"
+            className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
             style={{ backgroundImage: "url('/background/flower.png')" }}
           ></div>
           <div className="h-full w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
             <span className="text-3xl text-black font-bold">Experience the Grace of the Divine at Shree Shantadurga Shankhwaleshwari Temple.</span>
           </div>
           <div
-            className="h-full w-[20%] bg-contain bg-no-repeat bg-center"
+            className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
             style={{ backgroundImage: "url('/background/flower.png')" }}
           ></div>
 
@@ -227,11 +256,11 @@ const Page = () => {
       <div className="h-screen w-screen flex justify-center items-center panel">
         <div
           ref={section2Ref}
-          className="h-[90%] w-[50%] grid grid-cols-2 grid-rows-2 p-4 gap-14"
+          className="h-[90%] w-[65%] grid grid-cols-2 grid-rows-2 p-4 gap-16 "
         >
           {sections.map((section, index) => (
             <Link key={index} href={section.link} passHref>
-              <div className="group relative w-full h-64 overflow-hidden rounded-xl shadow-lg cursor-pointer">
+              <div className="group relative w-full h-full overflow-hidden shadow-lg cursor-pointer">
                 <div
                   className="absolute inset-0 w-full h-full bg-amber-50/group-hover:bg-amber-50/20 transition-transform duration-500 ease-in-out group-hover:bg-amber-50/55 z-40"
                 >
@@ -257,22 +286,83 @@ const Page = () => {
           className="h-[30%] w-full  flex justify-between items-center p-4"
         >
           <div
-            className="h-full w-[20%] bg-contain bg-no-repeat bg-center"
+            className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
             style={{ backgroundImage: "url('/background/flower.png')" }}
           ></div>
           <div className="h-full w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
             <span className="text-3xl text-black font-bold">About us</span>
           </div>
           <div
-            className="h-full w-[20%] bg-contain bg-no-repeat bg-center"
+            className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
             style={{ backgroundImage: "url('/background/flower.png')" }}
           ></div>
-
         </div>
       </div>
       <div className="h-screen w-screen flex justify-center items-center panel">
+        <div className="w-full h-[90%] flex bg-gradient-to-tl from-amber-100 to-amber-100">
+          <div
+            className="w-[43%] h-full bg-center overflow-hidden"
+            style={{ backgroundImage: "url('/diety/background.jpg')" }}
+          >
+            <div className="relative backdrop-blur-sm w-full h-full flex justify-center items-center">
+
+              <div
+                className="z-20 absolute w-[75%] h-[75%] rounded-full bg-cover bg-center animate-spin [animation-duration:15s] shadow-[0_0_20px_5px_rgba(255,255,0,0.6),0_0_10px_2px_rgba(255,255,255,0.8),0_0_30px_10px_rgba(255,255,0,0.4),0_0_15px_4px_rgba(255,255,255,0.7)]"
+                style={{
+                  backgroundImage: "url('/background/chakra.png')",
+                  backgroundColor: "rgba(255,255,255,0.1)",
+                }}
+              >
+              </div>
+
+              <div
+                className="z-20 absolute w-1/2 h-1/2 rounded-full bg-cover bg-center overflow-hidden"
+                style={{ backgroundImage: "url('/background/goddess.jpg')" }}>
+                <div className="w-full h-full bg-amber-200/20 border-2 border-amber-200 rounded-full shadow-inner"></div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div className="w-[57%] h-full flex justify-start items-center p-10">
+            <p className="text-2xl font-mono mr-10 text-gray-500"> The 16th century Goa saw the reign of the Portuguese and faced their terror, intending to spread Christianity.
+              Goans witnessed forceful acts of conversion, temple demolitions, destruction of idols, looting of temple wealth,
+              and even setting temple buildings on fire.
+              During this dark period, our pious ancestors risked their lives—leaving behind their homes, land, wealth, and
+              loved ones. Under the cover of moonless nights, they crossed borders with their family deities and symbols,
+              traversing forests, rivers, and hills to rebuild temples in new lands and preserve the Hindu faith for future
+              generations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* section4 */}
+      <div className="h-screen w-screen flex justify-center items-center panel">
+        <div
+          ref={infoRef3}
+          className="h-[30%] w-full  flex justify-between items-center p-4"
+        >
+          <div
+            className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+            style={{ backgroundImage: "url('/background/flower.png')" }}
+          ></div>
+          <div className="h-full w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
+            <span className="text-3xl text-black font-bold">Nine Deities, Eternal Protectors of Our People.</span>
+          </div>
+          <div
+            className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+            style={{ backgroundImage: "url('/background/flower.png')" }}
+          ></div>
+        </div>
+      </div>
+
+      <div className="h-screen w-screen flex justify-center items-center panel">
         <DeitySection />
       </div>
+
+      {/* footer */}
       <div className="h-screen w-screen flex justify-center items-end panel">
 
         <Footer />
@@ -280,8 +370,7 @@ const Page = () => {
 
 
 
-
-    </div>
+    </div >
   );
 };
 

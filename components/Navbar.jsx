@@ -107,7 +107,7 @@ const Navbar = () => {
             {isVisible && (
                 <nav
                     ref={navRef}
-                    className="fixed inset-0 w-screen h-screen flex flex-col pt-4 backdrop-blur-sm bg-black/30 z-50"
+                    className="fixed inset-0 w-screen h-screen flex flex-col pt-4 backdrop-blur-2xl bg-black/30 z-50"
                 >
                     <div className="flex justify-end h-[10%] w-full p-1 px-7">
                         <span className="text-hover text-white text-3xl " onClick={handleClose}>
