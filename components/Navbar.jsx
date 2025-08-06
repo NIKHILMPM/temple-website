@@ -29,16 +29,29 @@ const Navbar = () => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
             if (currentScrollY > prevScrollY.current && currentScrollY > 50) {
-                setScrollDir("down"); // Hide nav
+                if (scrollDir !== "down") setScrollDir("down");
             } else {
-                setScrollDir("up"); // Show nav
+                if (scrollDir !== "up") setScrollDir("up");
             }
             prevScrollY.current = currentScrollY;
         };
 
+        const handleMouseMove = (e) => {
+            if (e.clientY <= 100 && scrollDir === "down") {
+                setScrollDir("up");
+            }
+        };
+
         window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        window.addEventListener("mousemove", handleMouseMove);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("mousemove", handleMouseMove);
+        };
+    }, [scrollDir]);
+
+
 
     useGSAP(() => {
         gsap.fromTo(

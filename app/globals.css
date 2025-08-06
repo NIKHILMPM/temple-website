@@ -5,3 +5,29 @@
         @apply transition-transform duration-300 ease-in-out hover:scale-105 hover:text-yellow-400 cursor-pointer;
     }
 }
+
+/* global.css or styles/globals.css */
+
+::-webkit-scrollbar {
+    width: 6px;
+    /* Slim scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* Transparent track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.5);
+    /* Semi-transparent dark thumb */
+    border-radius: 4px;
+    /* Rounded ends */
+    border: 1px solid transparent;
+    /* Optional border for spacing */
+}
+
+/* Optional: For horizontal scrollbars */
+::-webkit-scrollbar-horizontal {
+    height: 5px;
+}

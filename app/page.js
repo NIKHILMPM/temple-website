@@ -170,7 +170,7 @@ const Page = () => {
   return (
     <>
       {/* /////////////////////////////////////////////////////for pc */}
-      <div ref={containerRef} className="hidden md:block overflow-hidden no-scrollbar">
+      <div ref={containerRef} className="hidden md:block overflow-hidden">
         <div className="h-screen w-screen panel">
           <div className="fixed inset-0 w-screen h-screen -z-10 opacity-50 bg-cover" style={{ backgroundImage: "url('/background/background.jpg')" }}></div>
 
@@ -318,7 +318,7 @@ const Page = () => {
             </div>
 
             <div className="w-[57%] h-full flex justify-start items-center p-10">
-              <p className="text-2xl font-mono mr-10 text-gray-500"> The 16th century Goa saw the reign of the Portuguese and faced their terror, intending to spread Christianity.
+              <p className="text-2xl font-mono mr-10 text-gray-500"> In the 16th century Goa saw the reign of the Portuguese and faced their terror, intending to spread Christianity.
                 Goans witnessed forceful acts of conversion, temple demolitions, destruction of idols, looting of temple wealth,
                 and even setting temple buildings on fire.
                 During this dark period, our pious ancestors risked their lives—leaving behind their homes, land, wealth, and
@@ -360,8 +360,8 @@ const Page = () => {
           <Footer />
         </div>
       </div >
-      {/* // ....................................................phone-Ui.................................................. */}
-      <div ref={containerRef1} className="block md:hidden overflow-hidden no-scrollbar">
+      {/* // ....................................................for-phone.................................................. */}
+      <div ref={containerRef1} className="block md:hidden overflow-hidden">
         <div className="h-screen w-screen panel">
           <div
             className="fixed inset-0 w-screen h-screen -z-10 opacity-50 bg-cover"
