@@ -124,7 +124,7 @@ const Page = () => {
                                 ))}
                             </Swiper>
                         </div>
-                        <div className="h-[55%] w-full bg-gradient-to-bl from-amber-200/90 to-amber-100/90 rounded-br-xl rounded-bl-xl p-6 flex flex-col justify-center text-white font-semibold text-lg space-y-4 shadow-xl">
+                        <div className=" z-10 h-[55%] w-full bg-gradient-to-bl from-amber-200/90 to-amber-100/90 rounded-br-xl rounded-bl-xl p-6 flex flex-col justify-center text-white font-semibold text-lg space-y-4 shadow-xl">
                             <div className="flex justify-between border-b border-white pb-2">
                                 <span>AC ROOM - KULAVI</span>
                                 <span>Rs. 1700/-</span>
