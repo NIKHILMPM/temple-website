@@ -232,6 +232,8 @@ const page = () => {
 
     return (
         <>
+            <div className="fixed inset-0 w-screen h-screen backdrop-blur-xl"></div>
+
             {/* for pc */}
             <div className="hidden md:block ">
                 {displayState && <div className="fixed inset-0 z-40 w-screen h-screen bg-black/50 flex justify-center items-center" onClick={() => setDisplayState(false)}>
@@ -275,10 +277,10 @@ const page = () => {
 
                 </div>}
 
-
                 <div
-                    className="w-screen h-screen flex justify-center items-end bg-center bg-cover"
-                    style={{ backgroundImage: "url('/background/background.jpg')" }}
+                    className="w-screen h-screen flex justify-center items-end bg-cover "
+                    style={{ backgroundImage: "url('/background/sevabg.jpg')" }}
+
                 >
                     <div className="h-[90%] w-[70%] flex justify-around items-center bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
                         <div className="h-[85%] w-full mb-10">
@@ -292,7 +294,7 @@ const page = () => {
                             >
                                 {sevasList.map((sevaGroup, index) => (
                                     <SwiperSlide key={index}>
-                                        <div className="h-full w-full backdrop-blur-2xl font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
+                                        <div className="h-full w-full bg-black/25 text-white font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
                                             <div className="h-[20%] w-full flex justify-center items-center">
                                                 <h2 className="text-3xl font-bold mb-4 text-center">{sevaGroup.title}</h2>
                                             </div>
@@ -390,10 +392,11 @@ const page = () => {
 
                 </div>}
                 <div
-                    className="w-screen h-screen flex justify-center items-end bg-center bg-cover"
-                    style={{ backgroundImage: "url('/background/background.jpg')" }}
+                    className="w-screen h-screen flex justify-center items-end bg-cover bg-center"
+                    style={{ backgroundImage: "url('/background/sevabg.jpg')" }}
+
                 >
-                    <div className="h-[90%] w-[90%] flex justify-around items-center bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
+                    <div className="h-[90%] w-[90%] bg-black/20 mb-7 text-white flex justify-around items-center bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
                         <div className="h-[85%] w-full mb-10">
                             <Swiper
                                 modules={[Navigation, Pagination, Autoplay]}

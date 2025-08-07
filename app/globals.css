@@ -9,7 +9,7 @@
 /* global.css or styles/globals.css */
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 3px;
     /* Slim scrollbar */
 }
 
@@ -19,7 +19,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(100, 100, 100, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     /* Semi-transparent dark thumb */
     border-radius: 4px;
     /* Rounded ends */
@@ -30,4 +30,87 @@
 /* Optional: For horizontal scrollbars */
 ::-webkit-scrollbar-horizontal {
     height: 5px;
+}
+
+@keyframes colorAndFlow {
+    0% {
+        color: #ff5e00;
+        background-position: 0% 50%;
+    }
+
+    25% {
+        color: #a64209;
+    }
+
+    75% {
+        color: #f98643;
+        background-position: 100% 50%;
+    }
+
+    100% {
+        color: #ff5e00;
+        background-position: 0% 50%;
+    }
+}
+
+.animate-color-and-flow {
+    animation: colorAndFlow 3s infinite linear;
+    background-size: 200% 200%;
+}
+
+@keyframes colorAndFlow2 {
+    0% {
+        color: #755c00;
+        background-position: 0% 50%;
+    }
+
+    25% {
+        color: #bf980b;
+    }
+
+    75% {
+        color: #9a7b0a;
+        background-position: 100% 50%;
+    }
+
+    100% {
+        color: #755c00;
+        background-position: 0% 50%;
+    }
+}
+
+.animate-color-and-flow2 {
+    animation: colorAndFlow 3s infinite linear;
+    background-size: 200% 200%;
+}
+
+@keyframes beigeGradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-beige-background {
+    background: linear-gradient(270deg,
+            #fdf6e3,
+            /* soft cream */
+            #f5f5dc,
+            /* beige */
+            #fbeec1,
+            /* light vanilla */
+            #fff5e1,
+            /* light almond */
+            #fdf6e3
+            /* loop back */
+        );
+    background-size: 400% 400%;
+    animation: beigeGradientFlow 15s ease infinite;
 }

@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { EffectCoverflow } from 'swiper/modules';
 
 const gotraData = [
     {
@@ -60,16 +61,18 @@ const gotraData = [
 const page = () => {
     return (
         <>
+            <div className="absolute inset-0 w-full h-full backdrop-blur-lg" />
+
             {/* for pc */}
             <div className="hidden md:block ">
                 <div
                     className="w-screen h-screen flex justify-center items-end bg-center bg-cover"
-                    style={{ backgroundImage: "url('/background/background.jpg')" }}
+                    style={{ backgroundImage: "url('/background/pujaribg.jpg')" }}
                 >
                     <div className="h-[90%] w-[70%] flex justify-around items-center bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
                         <div className="h-[85%] w-full mb-10">
                             <Swiper
-                                modules={[Navigation, Pagination, Autoplay]}
+                                modules={[Navigation, Pagination, Autoplay, EffectFade]}
                                 spaceBetween={70}
                                 slidesPerView={1}
                                 pagination={{ clickable: true }}
@@ -78,7 +81,8 @@ const page = () => {
                             >
                                 {gotraData.map((committegroup, index) => (
                                     <SwiperSlide key={index}>
-                                        <div className="h-full w-full backdrop-blur-2xl font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
+                                        <div className="h-full w-full bg-black/20 text-white font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
+
                                             <div className="h-[20%] w-full flex justify-center items-center">
                                                 <h2 className="text-3xl font-bold mb-4 text-center">{committegroup.title}</h2>
                                             </div>
@@ -87,7 +91,7 @@ const page = () => {
 
                                                     <tbody>
                                                         {committegroup.items.map((item) => (
-                                                            <tr key={item.sr} className="h-12">
+                                                            <tr key={item.name} className="h-12">
                                                                 <td className="px-2 py-1 text-center align-middle h-12">{item.name}</td>
                                                             </tr>
                                                         ))}
@@ -108,12 +112,12 @@ const page = () => {
             <div className="block md:hidden ">
                 <div
                     className="w-screen h-screen flex justify-center items-end bg-center bg-cover"
-                    style={{ backgroundImage: "url('/background/background.jpg')" }}
+                    style={{ backgroundImage: "url('/background/pujaribg.jpg')" }}
                 >
-                    <div className="h-[90%] w-[70%] flex justify-around items-center bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
-                        <div className="h-[85%] w-full mb-10">
+                    <div className="h-[90%] w-[70%] flex justify-around items-center bg-opacity-90 rounded-xl overflow-hidden shadow-lg ">
+                        <div className="h-[85%] w-full mb-10 ">
                             <Swiper
-                                modules={[Navigation, Pagination, Autoplay]}
+                                modules={[Navigation, Pagination, Autoplay, EffectFade]}
                                 spaceBetween={70}
                                 slidesPerView={1}
                                 pagination={{ clickable: true }}
@@ -122,7 +126,7 @@ const page = () => {
                             >
                                 {gotraData.map((committegroup, index) => (
                                     <SwiperSlide key={index}>
-                                        <div className="h-full w-full backdrop-blur-2xl font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
+                                        <div className="h-full w-full bg-black/20 text-white font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
                                             <div className="h-[20%] w-full flex justify-center items-center">
                                                 <h2 className="text-3xl font-bold mb-4 text-center">{committegroup.title}</h2>
                                             </div>
@@ -131,8 +135,8 @@ const page = () => {
 
                                                     <tbody>
                                                         {committegroup.items.map((item) => (
-                                                            <tr key={item.sr} className="h-12">
-                                                                <td className="px-2 py-1 text-center align-middle h-12">{item.name}</td>
+                                                            <tr key={item.name} className="h-12">
+                                                                <td className="px-2 py-1 text-center align-middle h-12 ">{item.name}</td>
                                                             </tr>
                                                         ))}
                                                     </tbody>

@@ -1,9 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// import Navbar from "@/components/Navbar";
 import Navbar from "../components/Navbar";
 import 'slick-carousel/slick/slick.css';  /* ❌ NOT ALLOWED */
 import 'slick-carousel/slick/slick-theme.css';
+import ProviderWrapper from "./redux/ProviderWrapper";
 
 
 
@@ -28,8 +28,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
+        <ProviderWrapper>
+          <Navbar />
+          {children}
+        </ProviderWrapper>
+
       </body>
     </html>
   );

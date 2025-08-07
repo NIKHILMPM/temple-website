@@ -79,11 +79,13 @@ const committeeList = [
 const page = () => {
     return (
         <>
+            <div className="fixed inset-0 w-screen h-screen backdrop-blur-lg"></div>
+
             {/* for pc */}
             <div className="hidden md:block ">
                 <div
                     className="w-screen h-screen flex justify-center items-end bg-center bg-cover"
-                    style={{ backgroundImage: "url('/background/background.jpg')" }}
+                    style={{ backgroundImage: "url('/background/committebg.jpg')" }}
                 >
                     <div className="h-[90%] w-[70%] flex justify-around items-center bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
                         <div className="h-[85%] w-full mb-10">
@@ -97,7 +99,9 @@ const page = () => {
                             >
                                 {committeeList.map((committegroup, index) => (
                                     <SwiperSlide key={index}>
-                                        <div className="h-full w-full backdrop-blur-2xl font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
+                                        {/* <div className="h-full w-full backdrop-blur-2xl font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center"> */}
+                                        <div className="h-full w-full bg-black/20 text-white font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
+
                                             <div className="h-[20%] w-full flex justify-center items-center">
                                                 <h2 className="text-3xl font-bold mb-4 text-center">{committegroup.title}</h2>
                                             </div>
@@ -112,7 +116,7 @@ const page = () => {
                                                     </thead>
                                                     <tbody>
                                                         {committegroup.items.map((item) => (
-                                                            <tr key={item.sr} className="h-12">
+                                                            <tr key={item.name} className="h-12">
                                                                 <td className="px-2 py-1 text-center align-middle h-12">{item.name}</td>
                                                                 <td className="px-2 py-1 text-center align-middle h-12 truncate">{item.phone}</td>
                                                                 <td className="px-2 py-1 text-center align-middle h-12">{item.designation}</td>
@@ -135,7 +139,7 @@ const page = () => {
             <div className="block md:hidden ">
                 <div
                     className="w-screen h-screen flex justify-center items-end bg-center bg-cover"
-                    style={{ backgroundImage: "url('/background/background.jpg')" }}
+                    style={{ backgroundImage: "url('/background/committebg.jpg')" }}
                 >
                     <div className="h-[90%] w-[70%] flex justify-around items-center bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
                         <div className="h-[85%] w-full mb-10">
@@ -149,7 +153,9 @@ const page = () => {
                             >
                                 {committeeList.map((committegroup, index) => (
                                     <SwiperSlide key={index}>
-                                        <div className="h-full w-full backdrop-blur-2xl font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
+                                        {/* <div className="h-full w-full backdrop-blur-2xl font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center"> */}
+                                        <div className="h-full w-full bg-black/20 text-white font-bold font-serif rounded-lg p-6 overflow-y-auto flex flex-col justify center items-center">
+
                                             <div className="h-[20%] w-full flex justify-center items-center">
                                                 <h2 className="text-xl mb-4 text-center">{committegroup.title}</h2>
                                             </div>
@@ -164,7 +170,7 @@ const page = () => {
                                                     </thead>
                                                     <tbody>
                                                         {committegroup.items.map((item) => (
-                                                            <tr key={item.sr} className="h-12">
+                                                            <tr key={item.name} className="h-12">
                                                                 <td className="px-2 py-1 text-center align-middle h-12">{item.name}</td>
                                                                 <td className="px-2 py-1 text-center align-middle h-12 truncate">{item.phone}</td>
                                                                 <td className="px-2 py-1 text-center align-middle h-12">{item.designation}</td>

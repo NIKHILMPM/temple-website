@@ -48,6 +48,7 @@ const Page = () => {
   const infoRef21 = useRef(null);
   const infoRef31 = useRef(null);
 
+
   // Section 1 entrance animation
   useGSAP(() => {
     const boxes1 = section1Ref.current?.children ? Array.from(section1Ref.current.children) : [];
@@ -172,7 +173,9 @@ const Page = () => {
       {/* /////////////////////////////////////////////////////for pc */}
       <div ref={containerRef} className="hidden md:block overflow-hidden">
         <div className="h-screen w-screen panel">
-          <div className="fixed inset-0 w-screen h-screen -z-10 opacity-50 bg-cover" style={{ backgroundImage: "url('/background/background.jpg')" }}></div>
+          <div className="fixed inset-0 w-screen h-screen -z-10 opacity-100 bg-cover" style={{ backgroundImage: "url('/background/background.jpg')" }}>
+            <div className="h-full w-full backdrop-blur-sm" />
+          </div>
 
           {/* Section 1 - Hero */}
           <div className="relative h-screen w-screen panel">
@@ -233,8 +236,8 @@ const Page = () => {
               className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
-            <div className="h-full w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
-              <span className="text-3xl text-black font-bold">Experience the Grace of the Divine at Shree Shantadurga Shankhwaleshwari Temple.</span>
+            <div className="h-full w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
+              <span className="text-3xl font-bold text-black animate-color-and-flow ">Experience the Grace of the Divine at Shree Shantadurga Shankhwaleshwari Temple.</span>
             </div>
             <div
               className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
@@ -253,6 +256,7 @@ const Page = () => {
             {sections.map((section, index) => (
               <Link key={index} href={section.link} passHref>
                 <div className="group relative w-full h-full overflow-hidden shadow-lg cursor-pointer">
+                  <div className="absolute inset-0 z-20 w-full h-full bg-amber-200/20"></div>
                   <div
                     className="absolute inset-0 w-full h-full bg-amber-50/group-hover:bg-amber-50/20 transition-transform duration-500 ease-in-out group-hover:bg-amber-50/55 z-40"
                   >
@@ -281,8 +285,8 @@ const Page = () => {
               className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
-            <div className="h-full w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
-              <span className="text-3xl text-black font-bold">About us</span>
+            <div className="h-full w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
+              <span className="text-3xl text-black font-bold animate-color-and-flow ">About us</span>
             </div>
             <div
               className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
@@ -318,7 +322,7 @@ const Page = () => {
             </div>
 
             <div className="w-[57%] h-full flex justify-start items-center p-10">
-              <p className="text-2xl font-mono mr-10 text-gray-500"> In the 16th century Goa saw the reign of the Portuguese and faced their terror, intending to spread Christianity.
+              <p className="text-2xl font-mono mr-10 text-gray-500 animate-color-and-flow2"> In the 16th century Goa saw the reign of the Portuguese and faced their terror, intending to spread Christianity.
                 Goans witnessed forceful acts of conversion, temple demolitions, destruction of idols, looting of temple wealth,
                 and even setting temple buildings on fire.
                 During this dark period, our pious ancestors risked their lives—leaving behind their homes, land, wealth, and
@@ -340,8 +344,8 @@ const Page = () => {
               className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
-            <div className="h-full w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
-              <span className="text-3xl text-black font-bold">Nine Deities, Eternal Protectors of Our People.</span>
+            <div className="h-full w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
+              <span className="text-3xl text-black font-bold animate-color-and-flow ">Nine Deities, Eternal Protectors of Our People.</span>
             </div>
             <div
               className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
@@ -427,8 +431,8 @@ const Page = () => {
               className="flower11 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
-            <div className="h-1/3 w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
-              <span className="text-xs text-black font-bold">
+            <div className="h-1/3 w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
+              <span className="text-xs text-black font-bold animate-color-and-flow ">
                 Experience the Grace of the Divine at Shree Shantadurga Shankhwaleshwari Temple.
               </span>
             </div>
@@ -447,6 +451,7 @@ const Page = () => {
           >
             {sections.map((section, index) => (
               <Link key={index} href={section.link} passHref>
+                <div className="absolute inset-0 z-20 w-full h-full bg-amber-200/20"></div>
                 <div className="group relative w-full h-full overflow-hidden shadow-lg cursor-pointer">
                   <div className="absolute inset-0 w-full h-full bg-amber-50/group-hover:bg-amber-50/20 transition-transform duration-500 ease-in-out group-hover:bg-amber-50/55 z-40"></div>
                   <div
@@ -474,8 +479,8 @@ const Page = () => {
               className="flower21 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
-            <div className="h-1/3 w-[40%] border-t-5 border-b-4 border-black flex justify-center items-center">
-              <span className="text-xl text-black font-bold">About us</span>
+            <div className="h-1/3 w-[40%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
+              <span className="text-xl text-black font-bold animate-color-and-flow ">About us</span>
             </div>
             <div
               className="flower21 h-full w-[20%] bg-contain bg-no-repeat bg-center"
@@ -510,7 +515,7 @@ const Page = () => {
               </div>
             </div>
             <div className="w-full h-full flex justify-start items-center p-10">
-              <p className="text-sm font-mono mr-10 text-gray-500">
+              <p className="text-sm font-mono mr-10 text-gray-500 animate-color-and-flow2">
                 The 16th century Goa saw the reign of the Portuguese and faced their terror, intending to spread Christianity.
                 Goans witnessed forceful acts of conversion, temple demolitions, destruction of idols, looting of temple wealth,
                 and even setting temple buildings on fire.
@@ -533,8 +538,8 @@ const Page = () => {
               className="flower31 h-full w-[20%] bg-contain bg-no-repeat bg-center"
               style={{ backgroundImage: "url('/background/flower.png')" }}
             ></div>
-            <div className="h-1/4 w-[50%] border-t-5 border-b-4 border-black flex justify-center items-center">
-              <span className="text-xs text-black font-bold">Nine Deities, Eternal Protectors of Our People.</span>
+            <div className="h-1/4 w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
+              <span className="text-xs text-black font-bold animate-color-and-flow ">Nine Deities, Eternal Protectors of Our People.</span>
             </div>
             <div
               className="flower31 h-full w-[20%] bg-contain bg-no-repeat bg-center"
