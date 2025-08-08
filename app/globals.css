@@ -114,3 +114,13 @@
     background-size: 400% 400%;
     animation: beigeGradientFlow 15s ease infinite;
 }
+
+.swiper-pagination-bullet {
+    background: white !important;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background: white !important;
+    opacity: 1;
+}

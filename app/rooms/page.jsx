@@ -9,8 +9,9 @@ import Footer from "../../components/Footer";
 import ImageZoom from '../../components/ImageZoom'
 import { useDispatch, useSelector } from 'react-redux';
 import { setZoomState } from '../redux/zoomSlice';
-import { useState } from "react";
-
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const room = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
 
@@ -18,6 +19,21 @@ const Page = () => {
     const dispatch = useDispatch()
     const zoomState = useSelector((state) => state.zoom.zoomState);
     const [imglink, setImglink] = useState("")
+    const roomRef = useRef()
+    useGSAP(() => {
+        gsap.fromTo(roomRef.current
+            , {
+                scale: 0,
+                opacity: 0
+            }
+            , {
+                scale: 1,
+                opacity: 1,
+                duration: 1,
+                ease: "power1.inOut"
+            }
+        )
+    })
 
     const handleClick = (link) => {
         setImglink(link)
@@ -32,11 +48,11 @@ const Page = () => {
             {/* for pc */}
             <div className="hidden md:block">
                 <div
-                    className="w-screen h-screen flex justify-center items-end bg-center bg-cover"
+                    className="w-screen h-screen flex justify-center items-center bg-center bg-cover"
                     style={{ backgroundImage: "url('/background/background.jpg')" }}
                 >
-                    <div className="group relative mb-8 h-[90%] w-[70%] flex justify-center items-center bg-amber-900/30 bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
-                        <div className="absolute inset-0 w-full h-full bg-gradient-to-l from-amber-50 to-amber-100 shadow-black shadow-2xs" ></div>
+                    <div ref={roomRef} className="group relative  h-[85%] w-[72%] flex justify-center items-center bg-amber-900/30 bg-opacity-90 rounded-xl overflow-hidden shadow-lg">
+                        <div className="absolute inset-0 w-full h-full bg-gradient-to-l from-amber-100 to-amber-200 shadow-black shadow-2xs" ></div>
                         <div className="absolute h-[97%] w-[98%] rounded-2xl overflow-hidden">
                             <Swiper
                                 modules={[Autoplay, Pagination, EffectFade]}
@@ -146,7 +162,6 @@ const Page = () => {
 
                 </div>
             </div>
-            <Footer />
         </div >
     );
 };
