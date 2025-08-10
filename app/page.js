@@ -163,7 +163,6 @@ const Page = () => {
   }, []);
 
 
-  // Scroll snapping between sections
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -175,12 +174,21 @@ const Page = () => {
       end: () => "+=" + window.innerHeight * (panels.length - 1),
       snap: 1 / (panels.length - 1),
       scrub: 1,
+
+      onRefresh: self => {
+        if (window.innerWidth < 768) {
+          self.disable();
+        } else {
+          self.enable();
+        }
+      },
     });
 
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
+
 
 
 
@@ -195,7 +203,7 @@ const Page = () => {
           </div>
 
           {/* Section 1 - Hero */}
-          <div className="relative h-screen w-screen ">
+          <div className="relative h-screen w-screen panel">
             <Swiper
               modules={[Autoplay, EffectFade]}
               effect="fade"
@@ -292,7 +300,7 @@ const Page = () => {
             ))}
           </div>
         </div>
-        {/* section4 */}
+        {/* section3 */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <div
             ref={infoRef2}
