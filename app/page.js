@@ -195,7 +195,7 @@ const Page = () => {
           </div>
 
           {/* Section 1 - Hero */}
-          <div className="relative h-screen w-screen panel">
+          <div className="relative h-screen w-screen ">
             <Swiper
               modules={[Autoplay, EffectFade]}
               effect="fade"
@@ -292,7 +292,7 @@ const Page = () => {
             ))}
           </div>
         </div>
-        {/* section3 */}
+        {/* section4 */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <div
             ref={infoRef2}
