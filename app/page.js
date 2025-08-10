@@ -41,9 +41,8 @@ const Page = () => {
   const section1Ref = useRef();
   const section2Ref = useRef();
   const containerRef = useRef();
+  const historyRef = useRef();
   const dietyRef = useRef();
-
-
 
 
   // Section 1 entrance animation
@@ -138,21 +137,46 @@ const Page = () => {
   }, []);
 
   useGSAP(() => {
+    if (!historyRef.current) return;
+
+    gsap.fromTo(
+      historyRef.current,
+      { x: 500, opacity: 0, scale: 0.5 },
+      {
+        x: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "power2.inOut",
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: historyRef.current,
+          start: "top 80%",
+          end: "bottom 100%",
+          scrub: 0.2
+        }
+      }
+    );
+  }, []);
+
+  useGSAP(() => {
     if (!dietyRef.current) return;
 
     gsap.fromTo(
       dietyRef.current,
-      { x: -1000, opacity: 0 },
+      { x: -500, opacity: 0, scale: 0.5 },
       {
         x: 0,
         opacity: 1,
+        scale: 1,
         duration: 1,
         ease: "power2.inOut",
+        duration: 0.5,
         scrollTrigger: {
           trigger: dietyRef.current,
           start: "top 80%",
           end: "bottom 100%",
-          scrub: true
+          scrub: 0.2
         }
       }
     );
@@ -310,7 +334,7 @@ const Page = () => {
           </div>
         </div>
         {/* Section 3 - History */}
-        <div className="h-auto min-h-screen w-screen flex justify-center items-center panel">
+        <div ref={historyRef} className="h-auto min-h-screen w-screen flex justify-center items-center panel overflow-hidden">
           <div className="w-full flex flex-col p-5 bg-gradient-to-tl from-amber-100 to-amber-100 md:flex-row md:p-0 md:h-[90%]">
 
             {/* Image Section */}
