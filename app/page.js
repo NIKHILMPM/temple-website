@@ -250,28 +250,31 @@ const Page = () => {
             </div>
           </div>
         </div>
-
-        {/* Section 2 - Info Heading */}
-        <div className="h-screen w-screen flex justify-center items-center panel">
-          <div
-            ref={infoRef1}
-            className="h-[30%] w-full  flex justify-between items-center p-4"
-          >
+        <div className="hidden md:block " >
+          <div className="h-[10vh] md:h-screen w-screen flex justify-center items-center panel">
             <div
-              className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
-              style={{ backgroundImage: "url('/background/flower.png')" }}
-            ></div>
-            <div className="h-1/3 md:h-full w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
-              <span className="text-sm md:text-3xl font-bold text-black animate-color-and-flow ">Experience the Grace of the Divine at Shree Shantadurga Shankhwaleshwari Temple.</span>
+              ref={infoRef1}
+              className="h-[30%] w-full  flex justify-between items-center p-4"
+            >
+              <div
+                className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+                style={{ backgroundImage: "url('/background/flower.png')" }}
+              ></div>
+              <div className="h-1/3 md:h-full w-[50%] md:border-t-5 md:border-b-4 md:border-amber-800 flex justify-center items-center">
+                <span className="text-xs md:text-3xl  font-bold text-black animate-color-and-flow ">Experience the Grace of the Divine at Shree Shantadurga Shankhwaleshwari Temple.</span>
+              </div>
+              <div
+                className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+                style={{ backgroundImage: "url('/background/flower.png')" }}
+              ></div>
+
             </div>
-            <div
-              className="flower1 h-full w-[20%] bg-contain bg-no-repeat bg-center"
-              style={{ backgroundImage: "url('/background/flower.png')" }}
-            ></div>
-
           </div>
         </div>
+        {/* Section 2 - Info Heading */}
 
+
+        {/* Section 2 - Grid of Links */}
         {/* Section 2 - Grid of Links */}
         <div className="h-screen w-screen flex justify-center items-center panel">
           <div
@@ -301,28 +304,30 @@ const Page = () => {
           </div>
         </div>
         {/* section3 */}
-        <div className="h-screen w-screen flex justify-center items-center panel">
-          <div
-            ref={infoRef2}
-            className="h-[30%] w-full  flex justify-between items-center p-4"
-          >
+        <div className="hidden md:block " >
+          <div className="h-screen w-screen flex justify-center items-center panel">
             <div
-              className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
-              style={{ backgroundImage: "url('/background/flower.png')" }}
-            ></div>
-            <div className="h-1/3 md:h-full w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
-              <span className="text-sm md:text-3xl text-black font-bold animate-color-and-flow ">About us</span>
+              ref={infoRef2}
+              className="h-[30%] w-full  flex justify-between items-center p-4"
+            >
+              <div
+                className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+                style={{ backgroundImage: "url('/background/flower.png')" }}
+              ></div>
+              <div className="h-1/3 md:h-full w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
+                <span className="text-sm md:text-3xl text-black font-bold animate-color-and-flow ">About us</span>
+              </div>
+              <div
+                className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+                style={{ backgroundImage: "url('/background/flower.png')" }}
+              ></div>
             </div>
-            <div
-              className="flower2 h-full w-[20%] bg-contain bg-no-repeat bg-center"
-              style={{ backgroundImage: "url('/background/flower.png')" }}
-            ></div>
           </div>
         </div>
         {/* Section 3 - History */}
-        <div ref={historyRef} className="h-auto min-h-screen w-screen flex justify-center items-center panel overflow-hidden">
+        <div ref={historyRef} className=" h-auto min-h-screen w-screen flex justify-center items-center panel overflow-hidden">
           <div className="w-full flex flex-col p-5 bg-gradient-to-tl from-amber-100 to-amber-100 md:flex-row md:p-0 md:h-[90%]">
-
+            <div className="block md:hidden text-4xl font-mono text-gray-500 animate-color-and-flow2">About us</div>
             {/* Image Section */}
             <div
               className="w-full h-[300px] rounded-br-4xl rounded-bl-4xl md:w-[43%] md:h-full md:rounded-none bg-center overflow-hidden"
@@ -375,22 +380,25 @@ const Page = () => {
 
 
         {/* section4 */}
-        <div className="h-screen w-screen flex justify-center items-center panel">
-          <div
-            ref={infoRef3}
-            className="h-[30%] w-full  flex justify-between items-center p-4"
-          >
+        <div className="hidden md:block " >
+
+          <div className="h-screen w-screen flex justify-center items-center panel">
             <div
-              className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
-              style={{ backgroundImage: "url('/background/flower.png')" }}
-            ></div>
-            <div className="h-1/3 md:h-full w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
-              <span className="text-sm md:text-3xl text-black font-bold animate-color-and-flow ">Nine Deities, Eternal Protectors of Our People.</span>
+              ref={infoRef3}
+              className="h-[30%] w-full  flex justify-between items-center p-4"
+            >
+              <div
+                className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+                style={{ backgroundImage: "url('/background/flower.png')" }}
+              ></div>
+              <div className="h-1/3 md:h-full w-[50%] border-t-5 border-b-4 border-amber-800 flex justify-center items-center">
+                <span className="text-sm md:text-3xl text-black font-bold animate-color-and-flow ">Nine Deities, Eternal Protectors of Our People.</span>
+              </div>
+              <div
+                className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
+                style={{ backgroundImage: "url('/background/flower.png')" }}
+              ></div>
             </div>
-            <div
-              className="flower3 h-full w-[20%] bg-contain bg-no-repeat bg-center"
-              style={{ backgroundImage: "url('/background/flower.png')" }}
-            ></div>
           </div>
         </div>
 
@@ -399,7 +407,7 @@ const Page = () => {
         </div>
 
         {/* footer */}
-        <div className="h-screen w-screen flex justify-center items-end panel">
+        <div className="h-1/2 md:h-screen w-screen flex justify-center items-end panel">
 
           <Footer />
         </div>

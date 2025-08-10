@@ -15,6 +15,7 @@ const Navbar = () => {
     const prevScrollY = useRef(0);
 
     const navLinks = [
+        { title: "HOME", link: "/" },
         { title: "ABOUT US", link: "/about" },
         { title: "COMMITTE", link: "/committe" },
         { title: "UTSAV", link: "/utsav" },
@@ -127,7 +128,7 @@ const Navbar = () => {
                             <CloseRoundedIcon />
                         </span>
                     </div>
-                    <div className="flex flex-col items-center pt-4 gap-12 text-3xl w-full h-[90%] font-black text-white">
+                    <div className="flex flex-col items-center pt-4 gap-12 text-3xl md:gap-6 md:text-2xl w-full h-[90%] font-black text-white">
                         {navLinks.map((item, index) => (
                             <Link
                                 onClick={handleClose}
