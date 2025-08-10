@@ -137,52 +137,30 @@ const Page = () => {
   }, []);
 
   useGSAP(() => {
-    if (!historyRef.current) return;
-
-    gsap.fromTo(
-      historyRef.current,
-      { x: 500, opacity: 0, scale: 0.5 },
-      {
-        x: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        ease: "power2.inOut",
-        duration: 0.5,
-        scrollTrigger: {
-          trigger: historyRef.current,
-          start: "top 80%",
-          end: "bottom 100%",
-          scrub: 0.2
+    const divRefs = [historyRef, dietyRef];
+    divRefs.forEach((ref, index) => {
+      if (!ref.current) return;
+      gsap.fromTo(
+        ref.current,
+        { x: index % 2 ? -200 : 200, opacity: 0, scale: 0.8 },
+        {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "power2.inOut",
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 80%",
+            end: "bottom 100%",
+            scrub: 0.2
+          }
         }
-      }
-    );
+      );
+    })
+
   }, []);
-
-  useGSAP(() => {
-    if (!dietyRef.current) return;
-
-    gsap.fromTo(
-      dietyRef.current,
-      { x: -500, opacity: 0, scale: 0.5 },
-      {
-        x: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        ease: "power2.inOut",
-        duration: 0.5,
-        scrollTrigger: {
-          trigger: dietyRef.current,
-          start: "top 80%",
-          end: "bottom 100%",
-          scrub: 0.2
-        }
-      }
-    );
-  }, []);
-
-
 
 
   // Scroll snapping between sections
