@@ -7,6 +7,8 @@ const page = () => {
     const aboutUsRef = useRef();
 
     useGSAP(() => {
+        if (window.innerWidth <= 768) return;
+
         const boxes = gsap.utils.toArray(aboutUsRef.current.children);
 
         gsap.fromTo(
@@ -29,7 +31,7 @@ const page = () => {
 
     return (
         <>
-            <div ref={aboutUsRef} className="px-6 py-12 max-w-5xl mx-auto text-justify leading-relaxed text-neutral-800">
+            <div ref={aboutUsRef} className="mt-[3vh] md:mt-[8vh] px-6 py-12 max-w-5xl mx-auto text-justify leading-relaxed text-neutral-800">
                 <h1 className="text-4xl font-bold text-center text-amber-700 mb-10 w-full flex justify-start">Prasad Kowl</h1>
 
                 <p className="mb-6">

@@ -9,6 +9,8 @@ const UtsavPage = () => {
     const utsavRef = useRef()
 
     useGSAP(() => {
+        if (window.innerWidth <= 768) return;
+
         const boxes = gsap.utils.toArray(utsavRef.current.children);
 
         gsap.fromTo(
@@ -31,7 +33,7 @@ const UtsavPage = () => {
     }, { dependencies: [], scope: utsavRef });
 
     return (
-        <div ref={utsavRef} className="max-w-5xl mx-auto px-4 py-16 text-justify text-gray-800 space-y-10">
+        <div ref={utsavRef} className="mt-[3vh] md:mt-[8vh] max-w-5xl mx-auto px-4 py-16 text-justify text-gray-800 space-y-10">
             <h1 className="text-4xl font-bold text-center text-amber-700 mb-10 w-full flex justify-start">Utsav (Festivals)</h1>
 
             {/* Image */}

@@ -7,6 +7,8 @@ const page = () => {
     const historyRef = useRef();
 
     useGSAP(() => {
+        if (window.innerWidth <= 768) return;
+
         const boxes = gsap.utils.toArray(historyRef.current.children);
 
         gsap.fromTo(
@@ -29,7 +31,7 @@ const page = () => {
 
     return (
         <>
-            <div ref={historyRef} className="px-6 py-12 max-w-5xl mx-auto text-justify leading-relaxed text-neutral-800">
+            <div ref={historyRef} className="mt-[3vh] md:mt-[8vh] px-6 py-12 max-w-5xl mx-auto text-justify leading-relaxed text-neutral-800">
                 <h1 className="text-4xl font-bold text-center text-amber-700 mb-10 w-full flex justify-start">Temple History</h1>
 
                 <p className="mb-6">
